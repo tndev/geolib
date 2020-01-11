@@ -1,0 +1,42 @@
+---
+#Checks:          '*,clang-analyzer-alpha.*,-clang-analyzer-alpha.deadcode.UnreachableCode,-clang-analyzer-core.CallAndMessage,-clang-analyzer-cplusplus.NewDeleteLeaks,misc-forward-declaration-namespace,modernize-use-auto,modernize-use-nullptr,modernize-redudant-void-arg,readability-inconsistent-declaration-parameter-name,readability-simplify-boolean-expr,readability-container-size-empty,performance-for-range-copy,readability-identifier-naming,modernize-use-override,google-explicit-constructor'
+Checks:           '*,clang-analyzer-*,-google-readability-todo,-fuchsia-overloaded-operator,-fuchsia-default-arguments,-fuchsia-trailing-return,-cppcoreguidelines-pro-type-reinterpret-cast,-llvm-header-guard'
+HeaderFilterRegex: 'cgfw/.*'
+FormatStyle:          'file'
+CheckOptions:
+    - key: readability-identifier-naming.ClassCase
+      value: lower_case
+    - key: readability-identifier-naming.StructCase
+      value: lower_case
+    - key: readability-identifier-naming.EnumCase
+      value: lower_case
+    - key: readability-identifier-naming.EnumConstantCase
+      value: CamelCase
+    - key: readability-identifier-naming.EnumConstantPrefix
+      value: k
+    - key: readability-identifier-naming.VariableCase
+      value: lower_case
+    - key: readability-identifier-naming.GlobalConstantCase
+      value: CamelCase
+    - key: readability-identifier-naming.GlobalConstantPrefix
+      value: k
+
+#    - key: readability-identifier-naming.FunctionCase
+#      value: lowerCase
+#    - key: readability-identifier-naming.GlobalFunction
+#      value: CamelCase
+#    - key: readability-identifier-naming.GlobalVariablePrefix
+#      value: g_
+#    - key: readability-identifier-naming.VariableCase
+#      value: camelBack
+#    - key: readability-identifier-naming.PrivateMemberPrefix
+#      value: m_
+#    - key: readability-identifier-naming.ProtectedMemberPrefix
+#      value: m_
+#    - key: readability-identifier-naming.MemberCase
+#      value: camelBack
+#    - key: readability-identifier-naming.Method
+#      value: camelBack
+#    - key: readability-identifier-naming.ClassMethod
+#      value: CamelCase
+# ...

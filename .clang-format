@@ -1,0 +1,10 @@
+# Basic style
+BasedOnStyle: LLVM
+IndentWidth: 4
+PointerAlignment: Left
+BinPackParameters: false
+
+# Comments
+AlwaysBreakTemplateDeclarations: true
+AlignTrailingComments: true
+SpacesBeforeTrailingComments: 1
