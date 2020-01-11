@@ -7,7 +7,7 @@
 
 namespace tndev::geo {
 
-template <angle_unit T = angle_unit::kDeg>
+template <angle_unit T>
 struct latlng {
     using value_type = double;
     using type = latlng;
@@ -38,6 +38,9 @@ struct latlng {
     angle_t m_lat = 0.;
     angle_t m_lng = 0.;
 };
+
+using latlng_deg = latlng<angle_unit::kDeg>;
+using latlng_rad = latlng<angle_unit::kRad>;
 
 template <typename T>
 auto min(const T& a, const T& b) -> T {
