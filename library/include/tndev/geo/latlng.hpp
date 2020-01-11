@@ -35,8 +35,8 @@ struct latlng {
     constexpr auto operator=(latlng&& p) noexcept -> latlng& = default;
 
   private:
-    angle_t m_lat = 0.;
-    angle_t m_lng = 0.;
+    angle_t m_lat = angle_t{0.};
+    angle_t m_lng = angle_t{0.};
 };
 
 using latlng_deg = latlng<angle_unit::kDeg>;
