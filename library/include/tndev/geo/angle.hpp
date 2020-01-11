@@ -70,6 +70,9 @@ struct angle {
     value_type value;
 };
 
+using degree = angle<angle_unit::kDeg>;
+using radian = angle<angle_unit::kRad>;
+
 template <angle_unit T1, angle_unit T2>
 [[nodiscard]] inline constexpr auto operator+(const angle<T1>& lhs,
                                               const angle<T2>& rhs)
@@ -135,9 +138,6 @@ template <angle_unit T1, angle_unit T2>
                                         const angle<T2>& rhs) -> bool {
     return !(rhs > lhs);
 }
-
-using degree = angle<angle_unit::kDeg>;
-using radian = angle<angle_unit::kRad>;
 
 template <class ToAngle, angle_unit T>
 [[nodiscard]] inline constexpr auto angle_cast(const angle<T>& in) -> ToAngle {
