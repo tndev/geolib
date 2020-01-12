@@ -1,9 +1,6 @@
-#define CATCH_CONFIG_MAIN
 #include <catch2/catch.hpp>
 
-// #include <tndev/geo/angle.hpp>
-
-//
+#include <tndev/geo/angle.hpp>
 
 TEST_CASE("deg to rad", "[single-file]") {
     using tndev::geo::angle_cast;

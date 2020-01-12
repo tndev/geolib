@@ -42,6 +42,7 @@ target_compile_options(project_warnings
 
 
 SET(SOURCES
+  main.cpp
   angle.cpp
 )
 
