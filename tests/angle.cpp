@@ -23,23 +23,23 @@ TEST_CASE("deg to rad", "[single-file]") {
     REQUIRE(angRad360Deg.count() == Approx(6.28318));
 }
 
-// TEST_CASE("deg literal", "[single-file]") {
-//     using namespace tndev::geo_literals;
+TEST_CASE("deg literal", "[single-file]") {
+    using namespace tndev::geo_literals;
 
-//     REQUIRE((45._deg).count() == Approx(45));
-//     REQUIRE((90._deg).count() == Approx(90));
-//     REQUIRE((180._deg).count() == Approx(180));
-// }
+    REQUIRE((45._deg).count() == Approx(45));
+    REQUIRE((90._deg).count() == Approx(90));
+    REQUIRE((180._deg).count() == Approx(180));
+}
 
-// TEST_CASE("rad literal", "[single-file]") {
-//     using namespace tndev::geo_literals;
-//     using tndev::geo::angle_cast;
-//     using tndev::geo::degree;
-//     using tndev::geo::radian;
+TEST_CASE("rad literal", "[single-file]") {
+    using namespace tndev::geo_literals;
+    using tndev::geo::angle_cast;
+    using tndev::geo::degree;
+    using tndev::geo::radian;
 
-//     REQUIRE((0.785398_rad).count() == Approx(0.785398));
-//     REQUIRE((6.28318_rad).count() == Approx(6.28318));
+    REQUIRE((0.785398_rad).count() == Approx(0.785398));
+    REQUIRE((6.28318_rad).count() == Approx(6.28318));
 
-//     REQUIRE(angle_cast<degree>(0.785398_rad).count() == Approx(45));
-//     REQUIRE(angle_cast<degree>(6.28318_rad).count() == Approx(360));
-// }
+    REQUIRE(angle_cast<degree>(0.785398_rad).count() == Approx(45));
+    REQUIRE(angle_cast<degree>(6.28318_rad).count() == Approx(360));
+}
