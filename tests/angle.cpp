@@ -2,7 +2,7 @@
 
 #include <tndev/geo/angle.hpp>
 
-TEST_CASE("deg to rad", "[single-file]") {
+TEST_CASE("deg to rad", "[angle]") {
     using tndev::geo::angle_cast;
     using tndev::geo::degree;
     using tndev::geo::radian;
@@ -20,7 +20,7 @@ TEST_CASE("deg to rad", "[single-file]") {
     REQUIRE(angRad360Deg.count() == Approx(6.28318));
 }
 
-TEST_CASE("deg literal", "[single-file]") {
+TEST_CASE("deg literal", "[angle]") {
     using namespace tndev::geo_literals;
 
     REQUIRE((45._deg).count() == Approx(45));
@@ -28,7 +28,7 @@ TEST_CASE("deg literal", "[single-file]") {
     REQUIRE((180._deg).count() == Approx(180));
 }
 
-TEST_CASE("rad literal", "[single-file]") {
+TEST_CASE("rad literal", "[angle]") {
     using namespace tndev::geo_literals;
     using tndev::geo::angle_cast;
     using tndev::geo::degree;
@@ -41,14 +41,14 @@ TEST_CASE("rad literal", "[single-file]") {
     REQUIRE(angle_cast<degree>(6.28318_rad).count() == Approx(360));
 }
 
-TEST_CASE("angle multiplication with scaler", "[single-file]") {
+TEST_CASE("angle multiplication with scaler", "[angle]") {
     using namespace tndev::geo_literals;
 
     REQUIRE((45._deg * 2.0).count() == Approx(90.));
     REQUIRE((90._deg * 0.5).count() == Approx(45.));
 }
 
-TEST_CASE("angle division with scaler", "[single-file]") {
+TEST_CASE("angle division with scaler", "[angle]") {
     using namespace tndev::geo_literals;
 
     REQUIRE((45._deg / 0.5).count() == Approx(90.));
