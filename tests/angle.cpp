@@ -40,3 +40,17 @@ TEST_CASE("rad literal", "[single-file]") {
     REQUIRE(angle_cast<degree>(0.785398_rad).count() == Approx(45));
     REQUIRE(angle_cast<degree>(6.28318_rad).count() == Approx(360));
 }
+
+TEST_CASE("angle multiplication with scaler", "[single-file]") {
+    using namespace tndev::geo_literals;
+
+    REQUIRE((45._deg * 2.0).count() == Approx(90.));
+    REQUIRE((90._deg * 0.5).count() == Approx(45.));
+}
+
+TEST_CASE("angle division with scaler", "[single-file]") {
+    using namespace tndev::geo_literals;
+
+    REQUIRE((45._deg / 0.5).count() == Approx(90.));
+    REQUIRE((90._deg / 2.0).count() == Approx(45.));
+}
