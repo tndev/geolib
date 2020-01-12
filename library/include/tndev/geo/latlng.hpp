@@ -18,6 +18,8 @@ struct latlng {
     ~latlng() noexcept = default;
 
     constexpr latlng(double lat_, double lng_) : m_lat(lat_), m_lng(lng_) {}
+    constexpr latlng(const angle_t& lat_, const angle_t& lng_)
+        : m_lat(lat_), m_lng(lng_) {}
 
     template <angle_unit S>
     // NOLINTNEXTLINE(google-explicit-constructor,hicpp-explicit-conversions)
