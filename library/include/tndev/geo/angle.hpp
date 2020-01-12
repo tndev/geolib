@@ -52,7 +52,7 @@ struct angle {
     }
 
     constexpr auto operator-=(const angle& ang) -> angle {
-        value += ang.count();
+        value -= ang.count();
         return *this;
     }
 
@@ -78,7 +78,7 @@ template <angle_unit T1, angle_unit T2>
                                               const angle<T2>& rhs)
     -> angle<T1> {
     using return_t = angle<T1>;
-    return return_t(return_t(rhs).count() + lhs.count());
+    return return_t(return_t(lhs).count() + rhs.count());
 }
 
 template <angle_unit T1, angle_unit T2>
@@ -86,7 +86,7 @@ template <angle_unit T1, angle_unit T2>
                                               const angle<T2>& rhs)
     -> angle<T1> {
     using return_t = angle<T1>;
-    return return_t(return_t(rhs).count() - lhs.count());
+    return return_t(return_t(lhs).count() - rhs.count());
 }
 
 template <angle_unit T1, typename Period>
