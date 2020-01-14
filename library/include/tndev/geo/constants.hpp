@@ -9,6 +9,7 @@ constexpr inline double kFullCircleDegree = 360.;
 constexpr inline double kQuaterCircleDegree = 90.;
 constexpr inline double kMinLongitude = -kHalfCircleDegree;
 constexpr inline double kMaxLongitude = kHalfCircleDegree;
+constexpr inline double kEarthMeanRadius = 6371.0088;
 
 constexpr inline double kPI =
     3.1415926535897932384626433832795028841971693993751058209749445923078164062;

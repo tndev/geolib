@@ -11,6 +11,7 @@ SET(HEADERS
     include/tndev/geo/angle.hpp
     include/tndev/geo/constants.hpp
     include/tndev/geo/latlng.hpp
+    include/tndev/geo/length.hpp
 )
 
 add_library(project_warnings INTERFACE)
