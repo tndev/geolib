@@ -29,14 +29,14 @@ struct length {
 
     [[nodiscard]] constexpr auto count() const -> Rep { return value; }
 
-  protected:
+  private:
     Rep value;
 };
 
 using kilometers = length<double, std::kilo>;
 using meters = length<double, std::ratio<1>>;
 using centimeters = length<double, std::centi>;
-using feet = length<double, std::ratio<3048, 10000>>; /// 0.30487804878
+using feet = length<double, std::ratio<3048, 10000>>;
 
 template <class ToLength, class Rep, class Period>
 constexpr auto length_cast(const length<Rep, Period>& d) -> ToLength {
