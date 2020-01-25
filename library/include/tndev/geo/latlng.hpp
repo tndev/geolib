@@ -33,7 +33,7 @@ struct latlng {
 
     constexpr void lat(const angle_t& lat) { m_lat = lat; }
     constexpr void lng(const angle_t& lng) { m_lng = lng; }
-    
+
     constexpr auto lat() const -> const angle_t& { return m_lat; }
     constexpr auto lng() const -> const angle_t& { return m_lng; }
 
