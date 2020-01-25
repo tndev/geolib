@@ -16,6 +16,8 @@ CheckOptions:
       value: k
     - key: readability-identifier-naming.VariableCase
       value: lower_case
+    - key: readability-identifier-naming.LocalVariableCase
+      value: camelBack
     - key: readability-identifier-naming.GlobalConstantCase
       value: CamelCase
     - key: readability-identifier-naming.GlobalConstantPrefix
