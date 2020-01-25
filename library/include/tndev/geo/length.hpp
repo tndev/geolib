@@ -71,10 +71,10 @@ template <class Rep = double,
           angle_unit S>
 auto distance(const latlng<T>& p1, const latlng<S>& p2) -> length<Rep, Period> {
 
-    auto lat1 = angle<angle_unit::kRad>(p1.lat).count();
-    auto lat2 = angle<angle_unit::kRad>(p2.lat).count();
-    auto lng1 = angle<angle_unit::kRad>(p1.lng).count();
-    auto lng2 = angle<angle_unit::kRad>(p2.lng).count();
+    auto lat1 = angle<angle_unit::kRad>(p1.lat()).count();
+    auto lat2 = angle<angle_unit::kRad>(p2.lat()).count();
+    auto lng1 = angle<angle_unit::kRad>(p1.lng()).count();
+    auto lng2 = angle<angle_unit::kRad>(p2.lng()).count();
 
     auto u = std::sin((lat2 - lat1) / 2.0);
     auto v = std::sin((lng2 - lng1) / 2.0);
