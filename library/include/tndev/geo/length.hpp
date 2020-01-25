@@ -9,6 +9,7 @@
 
 // https://stackoverflow.com/questions/20231258/minimum-distance-between-a-point-and-a-line-in-latitude-longitude
 // https://codereview.stackexchange.com/questions/157975/converting-between-miles-meters-inches-yards-and-feet/157988
+// https://planetcalc.com/713/
 
 namespace tndev::geo {
 
