@@ -46,11 +46,11 @@ constexpr auto length_cast(const length<Rep, Period>& d) -> ToLength {
 template <class Rep1, class Period1, class Rep2, class Period2>
 constexpr auto cast_length_int(const length<Rep2, Period2>& in) -> Rep2 {
 
-    auto rel_to =
+    auto relTo =
         static_cast<Rep1>(Period1::num) / static_cast<Rep1>(Period1::den);
-    auto rel_from =
+    auto relFrom =
         static_cast<Rep2>(Period2::num) / static_cast<Rep2>(Period2::den);
-    return in.count() * rel_from / rel_to;
+    return in.count() * relFrom / relTo;
 }
 
 template <class Rep1, typename Rep2, typename Period>
@@ -79,12 +79,12 @@ auto distance(const latlng<T>& p1, const latlng<S>& p2) -> length<Rep, Period> {
     auto u = std::sin((lat2 - lat1) / 2.0);
     auto v = std::sin((lng2 - lng1) / 2.0);
 
-    auto earth_radius = kilometers(kEarthMeanRadius);
+    auto earthRadius = kilometers(kEarthMeanRadius);
 
     // std::cout << earthRadius.count() << std::endl;
 
     auto result =
-        earth_radius * 2.0 *
+        earthRadius * 2.0 *
         std::asin(std::sqrt(u * u + std::cos(lat1) * std::cos(lat2) * v * v));
 
     return length<Rep, Period>(result);
