@@ -62,7 +62,7 @@ struct angle {
     }
 
     constexpr auto operator/=(const value_type& __rhs) -> angle& {
-        value *= __rhs;
+        value /= __rhs;
         return *this;
     }
 
