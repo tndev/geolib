@@ -1,7 +1,5 @@
 ---
-#Checks:          '*,clang-analyzer-alpha.*,-clang-analyzer-alpha.deadcode.UnreachableCode,-clang-analyzer-core.CallAndMessage,-clang-analyzer-cplusplus.NewDeleteLeaks,misc-forward-declaration-namespace,modernize-use-auto,modernize-use-nullptr,modernize-redudant-void-arg,readability-inconsistent-declaration-parameter-name,readability-simplify-boolean-expr,readability-container-size-empty,performance-for-range-copy,readability-identifier-naming,modernize-use-override,google-explicit-constructor'
-Checks:           '*,clang-analyzer-*,-google-readability-todo,-google-runtime-int,-fuchsia-default-arguments-declarations,-fuchsia-overloaded-operator,-fuchsia-default-arguments,-fuchsia-trailing-return,-cppcoreguidelines-pro-type-reinterpret-cast,-llvm-header-guard'
-HeaderFilterRegex: 'cgfw/.*'
+Checks:           '*,clang-analyzer-*,-readability-magic-numbers,-cppcoreguidelines-avoid-magic-numbers,-google-readability-todo,-google-runtime-int,-fuchsia-default-arguments-declarations,-fuchsia-overloaded-operator,-fuchsia-default-arguments,-fuchsia-trailing-return,-cppcoreguidelines-pro-type-reinterpret-cast,-llvm-header-guard'
 FormatStyle:          'file'
 CheckOptions:
     - key: readability-identifier-naming.ClassCase
