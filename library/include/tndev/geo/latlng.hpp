@@ -5,10 +5,14 @@
 #include <cmath>
 #include <utility>
 
+// https://stackoverflow.com/questions/20231258/minimum-distance-between-a-point-and-a-line-in-latitude-longitude
 namespace tndev::geo {
+
+struct latlng_trait;
 
 template <angle_unit T>
 struct latlng {
+    using trait = latlng_trait;
     using value_type = double;
     using type = latlng;
     using angle_t = angle<T>;
@@ -29,12 +33,9 @@ struct latlng {
 
     constexpr void lat(const angle_t& lat) { m_lat = lat; }
     constexpr void lng(const angle_t& lng) { m_lng = lng; }
-
-    constexpr auto lat() -> angle_t { return m_lat; }
-    constexpr auto lng() -> angle_t { return m_lng; }
-
-    constexpr auto lat() const -> angle_t& { return m_lat; }
-    constexpr auto lng() const -> angle_t& { return m_lng; }
+    
+    constexpr auto lat() const -> const angle_t& { return m_lat; }
+    constexpr auto lng() const -> const angle_t& { return m_lng; }
 
     constexpr auto operator=(const latlng& p) -> latlng& = default;
     constexpr auto operator=(latlng&& p) noexcept -> latlng& = default;
