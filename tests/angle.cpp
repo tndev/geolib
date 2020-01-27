@@ -21,7 +21,7 @@ TEST_CASE("deg to rad", "[angle]") {
 }
 
 TEST_CASE("deg literal", "[angle]") {
-    using namespace tndev::geo_literals;
+    using tndev::geo_literals::operator""_deg;
 
     REQUIRE((45._deg).count() == Approx(45));
     REQUIRE((90._deg).count() == Approx(90));
@@ -29,7 +29,7 @@ TEST_CASE("deg literal", "[angle]") {
 }
 
 TEST_CASE("rad literal", "[angle]") {
-    using namespace tndev::geo_literals;
+    using tndev::geo_literals::operator""_rad;
     using tndev::geo::angle_cast;
     using tndev::geo::degree;
     using tndev::geo::radian;
@@ -42,14 +42,14 @@ TEST_CASE("rad literal", "[angle]") {
 }
 
 TEST_CASE("angle multiplication with scaler", "[angle]") {
-    using namespace tndev::geo_literals;
+    using tndev::geo_literals::operator""_deg;
 
     REQUIRE((45._deg * 2.0).count() == Approx(90.));
     REQUIRE((90._deg * 0.5).count() == Approx(45.));
 }
 
 TEST_CASE("angle division with scaler", "[angle]") {
-    using namespace tndev::geo_literals;
+    using tndev::geo_literals::operator""_deg;
 
     REQUIRE((45._deg / 0.5).count() == Approx(90.));
     REQUIRE((90._deg / 2.0).count() == Approx(45.));
