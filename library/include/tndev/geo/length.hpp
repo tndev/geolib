@@ -17,13 +17,13 @@ template <class Rep = double, class Period = std::ratio<1>>
 struct length;
 
 template <class Rep1, class Period1, class Rep2, class Period2>
-constexpr auto cast_length_int(const length<Rep2, Period2>& in) -> Rep2;
+constexpr auto length_cast_int(const length<Rep2, Period2>& in) -> Rep2;
 
 template <class Rep, class Period>
 struct length {
     template <class Rep2, class Period2>
     constexpr explicit length(const length<Rep2, Period2>& val)
-        : value(cast_length_int<Rep, Period>(val)) {}
+        : value(length_cast_int<Rep, Period>(val)) {}
 
     constexpr explicit length(Rep val) : value(val) {}
 
@@ -44,7 +44,7 @@ constexpr auto length_cast(const length<Rep, Period>& d) -> ToLength {
 }
 
 template <class Rep1, class Period1, class Rep2, class Period2>
-constexpr auto cast_length_int(const length<Rep2, Period2>& in) -> Rep2 {
+constexpr auto length_cast_int(const length<Rep2, Period2>& in) -> Rep2 {
 
     auto relTo =
         static_cast<Rep1>(Period1::num) / static_cast<Rep1>(Period1::den);
