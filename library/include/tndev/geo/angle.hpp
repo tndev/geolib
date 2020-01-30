@@ -25,6 +25,7 @@ template <angle_unit T>
 struct angle {
     using value_type = double;
 
+    constexpr angle() = default;
     explicit constexpr angle(value_type val) : value(val) {}
     constexpr angle(const angle&) = default;
     constexpr angle(angle&&) noexcept = default;
@@ -67,7 +68,7 @@ struct angle {
     }
 
   private:
-    value_type value;
+    value_type value = 0;
 };
 
 using degree = angle<angle_unit::kDeg>;
@@ -78,7 +79,7 @@ template <angle_unit T1, angle_unit T2>
                                               const angle<T2>& rhs)
     -> angle<T1> {
     using return_t = angle<T1>;
-    return return_t(return_t(lhs).count() + rhs.count());
+    return return_t(return_t(lhs).count() + return_t(rhs).count());
 }
 
 template <angle_unit T1, angle_unit T2>
@@ -86,7 +87,7 @@ template <angle_unit T1, angle_unit T2>
                                               const angle<T2>& rhs)
     -> angle<T1> {
     using return_t = angle<T1>;
-    return return_t(return_t(lhs).count() - rhs.count());
+    return return_t(return_t(lhs).count() - return_t(rhs).count());
 }
 
 template <angle_unit T1, typename Period>
