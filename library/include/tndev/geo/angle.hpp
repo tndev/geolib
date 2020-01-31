@@ -46,12 +46,12 @@ struct angle {
         return angle(-value);
     }
 
-    constexpr auto operator+=(const angle& ang) -> angle {
+    constexpr auto operator+=(const angle& ang) -> angle& {
         value += ang.count();
         return *this;
     }
 
-    constexpr auto operator-=(const angle& ang) -> angle {
+    constexpr auto operator-=(const angle& ang) -> angle& {
         value -= ang.count();
         return *this;
     }
