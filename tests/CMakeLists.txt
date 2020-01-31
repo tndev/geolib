@@ -45,6 +45,7 @@ SET(SOURCES
   main.cpp
   angle.cpp
   length.cpp
+  bearing.cpp
 )
 
 add_executable(${project_name}  ${SOURCES})
