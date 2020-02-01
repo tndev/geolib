@@ -10,8 +10,7 @@
 // https://stackoverflow.com/questions/20231258/minimum-distance-between-a-point-and-a-line-in-latitude-longitude
 // https://codereview.stackexchange.com/questions/157975/converting-between-miles-meters-inches-yards-and-feet/157988
 
-namespace tndev {
-namespace geo {
+namespace tndev::geo {
 
 template <class Rep = double, class Period = std::ratio<1>>
 struct length;
@@ -90,9 +89,10 @@ auto distance(const latlng<T>& p1, const latlng<S>& p2) -> length<Rep, Period> {
     return length<Rep, Period>(result);
 }
 
-} // namespace geo
+} // namespace tndev::geo
 
-namespace geo_literals {
+namespace tndev::geo_literals {
+
 inline auto operator"" _m(long double val) -> geo::meters {
     return geo::meters(static_cast<double>(val));
 }
@@ -109,5 +109,4 @@ inline auto operator"" _ft(long double val) -> geo::feet {
     return geo::feet(static_cast<double>(val));
 }
 
-} // namespace geo_literals
-} // namespace tndev
+} // namespace tndev::geo_literals
