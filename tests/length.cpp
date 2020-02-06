@@ -7,6 +7,7 @@ TEST_CASE("calculate length deg", "[vector]") {
     using tndev::geo::distance;
     using tndev::geo::latlng_deg;
     using tndev::geo::latlng_rad;
+    using tndev::geo::length_cast;
     using tndev::geo::meters;
 
     auto llA = latlng_deg(46.363632, 8.536764);
@@ -21,6 +22,7 @@ TEST_CASE("calculate length rad", "[vector]") {
     using tndev::geo::distance;
     using tndev::geo::latlng_deg;
     using tndev::geo::latlng_rad;
+    using tndev::geo::length_cast;
     using tndev::geo::meters;
 
     auto llA = latlng_deg(46.363632, 8.536764);
