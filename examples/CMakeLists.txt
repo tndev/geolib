@@ -17,5 +17,5 @@ add_clang_format(TARGET
                  FILES
                  main.cpp)
 
-set_property(TARGET geolib-examples PROPERTY CXX_STANDARD 20)
+set_property(TARGET geolib-examples PROPERTY CXX_STANDARD 17)
 set_property(TARGET geolib-examples PROPERTY CXX_STANDARD_REQUIRED ON)

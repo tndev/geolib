@@ -69,7 +69,7 @@ set_property(TARGET ${project_name} PROPERTY CXX_INCLUDE_WHAT_YOU_USE /usr/bin/i
 
 target_link_libraries(${project_name} PUBLIC tndev-geolib Catch2::Catch2 PRIVATE project_warnings --coverage)
 
-set_property(TARGET geolib-tests PROPERTY CXX_STANDARD 20)
+set_property(TARGET geolib-tests PROPERTY CXX_STANDARD 17)
 set_property(TARGET geolib-tests PROPERTY CXX_STANDARD_REQUIRED ON)
 
 include(CTest)
