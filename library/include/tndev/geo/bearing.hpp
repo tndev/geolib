@@ -60,29 +60,29 @@ struct bearing {
 
     template <angle_unit Ta, angle_unit Tb>
     constexpr bearing(const latlng<Ta>& from, const latlng<Tb>& to)
-        : angle(calculate_bearing<T>(from, to)) {}
+        : value(calculate_bearing<T>(from, to)) {}
 
-    constexpr auto compass() const -> value_t { return angle; }
+    constexpr auto compass() const -> value_t { return value; }
 
     constexpr auto relative() const -> value_t {
-        auto res = angle;
-        if (angle.count() > bearing_trait<T>::kHalfAngle) {
-            res = value_t(angle.count() - bearing_trait<T>::kMaxAngle);
+        auto res = value;
+        if (value.count() > bearing_trait<T>::kHalfAngle) {
+            res = value_t(value.count() - bearing_trait<T>::kMaxAngle);
         }
         return res;
     }
 
     constexpr auto relative_abs() const -> value_t {
-        auto res = angle;
-        if (angle.count() > bearing_trait<T>::kHalfAngle) {
+        auto res = value;
+        if (value.count() > bearing_trait<T>::kHalfAngle) {
             res =
-                value_t(std::abs(angle.count() - bearing_trait<T>::kMaxAngle));
+                value_t(std::abs(value.count() - bearing_trait<T>::kMaxAngle));
         }
         return res;
     }
 
   private:
-    value_t angle;
+    value_t value;
 };
 
 using bearing_deg = bearing<angle_unit::kDeg>;
