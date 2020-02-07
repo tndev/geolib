@@ -5,8 +5,15 @@ set(project_name "geolib-tests")
 project(${project_name})
 set(CMAKE_EXPORT_COMPILE_COMMANDS 1)
 
-find_package(Catch2 REQUIRED)
+find_package(Catch2)
 
+if(Catch2_FOUND)
+  include(Catch)
+else()
+  add_subdirectory(Catch2)
+  include(Catch2/contrib/Catch.cmake)
+endif()
+enable_testing()
 # add_library(project_warnings INTERFACE)
 
 target_compile_options(project_warnings
@@ -60,7 +67,10 @@ add_clang_format(TARGET ${project_name}  FILES ${SOURCES})
 set_property(TARGET ${project_name} PROPERTY CXX_INCLUDE_WHAT_YOU_USE /usr/bin/include-what-you-use)
 
 
-target_link_libraries(${project_name} PUBLIC tndev-geolib Catch2::Catch2  PRIVATE project_warnings --coverage)
+target_link_libraries(${project_name} PUBLIC tndev-geolib Catch2::Catch2 PRIVATE project_warnings --coverage)
 
 set_property(TARGET geolib-tests PROPERTY CXX_STANDARD 20)
 set_property(TARGET geolib-tests PROPERTY CXX_STANDARD_REQUIRED ON)
+
+include(CTest)
+catch_discover_tests(${project_name})
