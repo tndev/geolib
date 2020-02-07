@@ -64,8 +64,8 @@ add_clang_tidy(TARGET ${project_name})
 include(ClangFormat)
 add_clang_format(TARGET ${project_name}  FILES ${SOURCES})
 
-set_property(TARGET ${project_name} PROPERTY CXX_INCLUDE_WHAT_YOU_USE /usr/bin/include-what-you-use)
-
+include(IncludeWhatYouUse)
+add_include_what_you_use(TARGET ${project_name})
 
 target_link_libraries(${project_name} PUBLIC tndev-geolib Catch2::Catch2 PRIVATE project_warnings --coverage)
 
