@@ -1,9 +1,10 @@
 
 #include <catch2/catch.hpp>
 
-#include "tndev/geo/angle.hpp"
+#include <tndev/geo/angle.hpp>
 #include <tndev/geo/bearing.hpp>
 #include <tndev/geo/constants.hpp>
+#include <tndev/geo/latlng.hpp>
 
 TEST_CASE("normalize bearing deg", "[bearing]") {
     using tndev::geo::degree;
