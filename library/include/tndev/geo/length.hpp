@@ -24,12 +24,13 @@ struct length {
     constexpr explicit length(const length<Rep2, Period2>& val)
         : value(length_cast_int<Rep, Period>(val)) {}
 
+    constexpr length() = default;
     constexpr explicit length(Rep val) : value(val) {}
 
     [[nodiscard]] constexpr auto count() const -> Rep { return value; }
 
   private:
-    Rep value;
+    Rep value = 0;
 };
 
 using kilometers = length<double, std::kilo>;
