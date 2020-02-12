@@ -31,3 +31,11 @@ TEST_CASE("divide by scalar", "[length]") {
     using tndev::geo::meters;
     REQUIRE((meters(1500.) / 2.).count() == Approx(750.));
 }
+
+TEST_CASE("default constructor", "[length]") {
+    using tndev::geo::kilometers;
+
+    kilometers len;
+
+    REQUIRE(len.count() == Approx(0.));
+}
