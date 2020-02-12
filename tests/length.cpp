@@ -39,3 +39,21 @@ TEST_CASE("default constructor", "[length]") {
 
     REQUIRE(len.count() == Approx(0.));
 }
+
+TEST_CASE("default copy constructor", "[length]") {
+    using tndev::geo::kilometers;
+
+    auto len = kilometers(kilometers(1.5));
+
+    REQUIRE(len.count() == Approx(1.5));
+}
+
+TEST_CASE("assign meters to kilometers", "[length]") {
+    using tndev::geo::kilometers;
+    using tndev::geo::meters;
+
+    kilometers len;
+    len = meters(1500.);
+
+    REQUIRE(len.count() == Approx(1.5));
+}
