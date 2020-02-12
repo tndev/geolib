@@ -64,6 +64,12 @@ constexpr auto operator*(const Rep2& val, const length<Rep1, Period>& pt)
     return length<Rep1, Period>{val * pt.count()};
 }
 
+template <class Rep1, typename Rep2, typename Period>
+constexpr auto operator/(const length<Rep1, Period>& pt, const Rep2& val)
+    -> length<Rep1, Period> {
+    return length<Rep1, Period>{pt.count() / val};
+}
+
 } // namespace tndev::geo
 
 namespace tndev::geo_literals {
