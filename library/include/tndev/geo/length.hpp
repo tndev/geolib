@@ -26,11 +26,12 @@ struct length {
     constexpr length(length&&) noexcept = default;
 
     template <class Rep2, class Period2>
-    constexpr explicit length(const length<Rep2, Period2>& val)
+    // NOLINTNEXTLINE(google-explicit-constructor,hicpp-explicit-conversions)
+    constexpr length(const length<Rep2, Period2>& val)
         : value(length_cast_int<Rep, Period>(val)) {}
 
-    //    constexpr auto operator=(const length& rhs) -> length& = default;
-    //    constexpr auto operator=(length&& rhs) noexcept -> length& = default;
+    constexpr auto operator=(const length& rhs) -> length& = default;
+    constexpr auto operator=(length&& rhs) noexcept -> length& = default;
 
     [[nodiscard]] constexpr auto count() const -> Rep { return value; }
 
