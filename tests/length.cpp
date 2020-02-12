@@ -57,3 +57,21 @@ TEST_CASE("assign meters to kilometers", "[length]") {
 
     REQUIRE(len.count() == Approx(1.5));
 }
+
+TEST_CASE("negate length", "[length]") {
+    using tndev::geo::kilometers;
+    using tndev::geo::meters;
+
+    kilometers len = -kilometers(1.5);
+
+    REQUIRE(len.count() == Approx(-1.5));
+}
+
+TEST_CASE("unary plus", "[length]") {
+    using tndev::geo::kilometers;
+    using tndev::geo::meters;
+
+    kilometers len = +kilometers(1.5);
+
+    REQUIRE(len.count() == Approx(1.5));
+}
