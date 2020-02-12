@@ -11,7 +11,8 @@ template <class Rep = double,
           class Period = std::ratio<1>,
           angle_unit T,
           angle_unit S>
-auto distance(const latlng<T>& p1, const latlng<S>& p2) -> length<Rep, Period> {
+[[nodiscard]] constexpr auto distance(const latlng<T>& p1, const latlng<S>& p2)
+    -> length<Rep, Period> {
 
     auto lat1 = angle<angle_unit::kRad>(p1.lat()).count();
     auto lat2 = angle<angle_unit::kRad>(p2.lat()).count();

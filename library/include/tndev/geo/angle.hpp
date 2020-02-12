@@ -75,62 +75,60 @@ using degree = angle<angle_unit::kDeg>;
 using radian = angle<angle_unit::kRad>;
 
 template <angle_unit T1, angle_unit T2>
-[[nodiscard]] inline constexpr auto operator+(const angle<T1>& lhs,
-                                              const angle<T2>& rhs)
-    -> angle<T1> {
+[[nodiscard]] constexpr auto operator+(const angle<T1>& lhs,
+                                       const angle<T2>& rhs) -> angle<T1> {
     using return_t = angle<T1>;
     return return_t(return_t(lhs).count() + return_t(rhs).count());
 }
 
 template <angle_unit T1, angle_unit T2>
-[[nodiscard]] inline constexpr auto operator-(const angle<T1>& lhs,
-                                              const angle<T2>& rhs)
-    -> angle<T1> {
+[[nodiscard]] constexpr auto operator-(const angle<T1>& lhs,
+                                       const angle<T2>& rhs) -> angle<T1> {
     using return_t = angle<T1>;
     return return_t(return_t(lhs).count() - return_t(rhs).count());
 }
 
 template <angle_unit T1, typename Period>
-[[nodiscard]] inline constexpr auto operator*(const angle<T1>& lhs,
-                                              const Period& s) -> angle<T1> {
+[[nodiscard]] constexpr auto operator*(const angle<T1>& lhs, const Period& s)
+    -> angle<T1> {
     using return_t = angle<T1>;
     return return_t(return_t(lhs).count() * s);
 }
 
 template <angle_unit T1, typename Period>
-[[nodiscard]] inline constexpr auto operator/(const angle<T1>& lhs,
-                                              const Period& s) -> angle<T1> {
+[[nodiscard]] constexpr auto operator/(const angle<T1>& lhs, const Period& s)
+    -> angle<T1> {
     using return_t = angle<T1>;
     return return_t(return_t(lhs).count() / s);
 }
 
 template <angle_unit T1, angle_unit T2>
-[[nodiscard]] inline constexpr auto operator==(const angle<T1>& lhs,
-                                               const angle<T2>& rhs) -> bool {
+[[nodiscard]] constexpr auto operator==(const angle<T1>& lhs,
+                                        const angle<T2>& rhs) -> bool {
     return lhs.count() == angle<T1>(rhs).count();
 }
 
 template <angle_unit T1, angle_unit T2>
-[[nodiscard]] inline constexpr auto operator!=(const angle<T1>& lhs,
-                                               const angle<T2>& rhs) -> bool {
+[[nodiscard]] constexpr auto operator!=(const angle<T1>& lhs,
+                                        const angle<T2>& rhs) -> bool {
     return lhs != rhs;
 }
 
 template <angle_unit T1, angle_unit T2>
-[[nodiscard]] inline constexpr auto operator<(const angle<T1>& lhs,
-                                              const angle<T2>& rhs) -> bool {
+[[nodiscard]] constexpr auto operator<(const angle<T1>& lhs,
+                                       const angle<T2>& rhs) -> bool {
     return lhs.count() < angle<T1>(rhs).count();
 }
 
 template <angle_unit T1, angle_unit T2>
-[[nodiscard]] inline constexpr auto operator>(const angle<T1>& lhs,
-                                              const angle<T2>& rhs) -> bool {
+[[nodiscard]] constexpr auto operator>(const angle<T1>& lhs,
+                                       const angle<T2>& rhs) -> bool {
     return rhs < lhs;
 }
 
 template <angle_unit T1, angle_unit T2>
-[[nodiscard]] inline constexpr auto operator<=(const angle<T1>& lhs,
-                                               const angle<T2>& rhs) -> bool {
+[[nodiscard]] constexpr auto operator<=(const angle<T1>& lhs,
+                                        const angle<T2>& rhs) -> bool {
     return !(rhs < lhs);
 }
 
@@ -141,7 +139,7 @@ template <angle_unit T1, angle_unit T2>
 }
 
 template <class ToAngle, angle_unit T>
-[[nodiscard]] inline constexpr auto angle_cast(const angle<T>& in) -> ToAngle {
+[[nodiscard]] constexpr auto angle_cast(const angle<T>& in) -> ToAngle {
     return ToAngle(in);
 }
 

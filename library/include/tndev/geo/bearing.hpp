@@ -23,7 +23,7 @@ struct bearing_trait<angle_unit::kRad> {
 };
 
 template <angle_unit Ta>
-inline constexpr auto normalize_bearing(const angle<Ta>& inputAngle) {
+[[nodiscard]] constexpr auto normalize_bearing(const angle<Ta>& inputAngle) {
     auto maxAngle = bearing_trait<Ta>::kMaxAngle;
 
     auto result = inputAngle;
@@ -36,8 +36,9 @@ inline constexpr auto normalize_bearing(const angle<Ta>& inputAngle) {
 }
 
 template <angle_unit R, angle_unit Ta, angle_unit Tb>
-inline constexpr auto calculate_bearing(const latlng<Ta>& from,
-                                        const latlng<Tb>& to) -> angle<R> {
+[[nodiscard]] constexpr auto calculate_bearing(const latlng<Ta>& from,
+                                               const latlng<Tb>& to)
+    -> angle<R> {
     auto fromRad = latlng_rad(from);
     auto toRad = latlng_rad(to);
     auto diffLng = toRad.lng() - fromRad.lng();
