@@ -20,12 +20,17 @@ constexpr auto length_cast_int(const length<Rep2, Period2>& in) -> Rep2;
 
 template <class Rep, class Period>
 struct length {
+    constexpr length() = default;
+    constexpr explicit length(Rep val) : value(val) {}
+    constexpr length(const length&) = default;
+    constexpr length(length&&) noexcept = default;
+
     template <class Rep2, class Period2>
     constexpr explicit length(const length<Rep2, Period2>& val)
         : value(length_cast_int<Rep, Period>(val)) {}
 
-    constexpr length() = default;
-    constexpr explicit length(Rep val) : value(val) {}
+    //    constexpr auto operator=(const length& rhs) -> length& = default;
+    //    constexpr auto operator=(length&& rhs) noexcept -> length& = default;
 
     [[nodiscard]] constexpr auto count() const -> Rep { return value; }
 
