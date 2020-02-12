@@ -26,6 +26,7 @@ struct length {
     constexpr explicit length(Rep val) : value(val) {}
     constexpr length(const length&) = default;
     constexpr length(length&&) noexcept = default;
+    ~length() = default;
 
     template <class Rep2, class Period2>
     // NOLINTNEXTLINE(google-explicit-constructor,hicpp-explicit-conversions)
