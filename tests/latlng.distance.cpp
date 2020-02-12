@@ -1,5 +1,6 @@
 #include <catch2/catch.hpp>
 
+#include <tndev/geo/latlng.distance.hpp>
 #include <tndev/geo/latlng.hpp>
 #include <tndev/geo/length.hpp>
 

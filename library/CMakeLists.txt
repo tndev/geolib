@@ -13,6 +13,7 @@ SET(HEADERS
     include/tndev/geo/latlng.hpp
     include/tndev/geo/bearing.hpp
     include/tndev/geo/length.hpp
+    include/tndev/geo/latlng.distance.hpp
 )
 
 add_library(project_warnings INTERFACE)

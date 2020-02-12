@@ -1,7 +1,6 @@
 #pragma once
 
 #include <tndev/geo/constants.hpp>
-#include <tndev/geo/latlng.hpp>
 
 #include <cmath>
 #include <iostream>
@@ -63,31 +62,6 @@ template <class Rep1, typename Rep2, typename Period>
 constexpr auto operator*(const Rep2& val, const length<Rep1, Period>& pt)
     -> length<Rep1, Period> {
     return length<Rep1, Period>{val * pt.count()};
-}
-
-template <class Rep = double,
-          class Period = std::ratio<1>,
-          angle_unit T,
-          angle_unit S>
-auto distance(const latlng<T>& p1, const latlng<S>& p2) -> length<Rep, Period> {
-
-    auto lat1 = angle<angle_unit::kRad>(p1.lat()).count();
-    auto lat2 = angle<angle_unit::kRad>(p2.lat()).count();
-    auto lng1 = angle<angle_unit::kRad>(p1.lng()).count();
-    auto lng2 = angle<angle_unit::kRad>(p2.lng()).count();
-
-    auto u = std::sin((lat2 - lat1) / 2.0);
-    auto v = std::sin((lng2 - lng1) / 2.0);
-
-    auto earthRadius = kilometers(kEarthMeanRadius);
-
-    // std::cout << earthRadius.count() << std::endl;
-
-    auto result =
-        earthRadius * 2.0 *
-        std::asin(std::sqrt(u * u + std::cos(lat1) * std::cos(lat2) * v * v));
-
-    return length<Rep, Period>(result);
 }
 
 } // namespace tndev::geo
