@@ -75,3 +75,99 @@ TEST_CASE("unary plus", "[length]") {
 
     REQUIRE(len.count() == Approx(1.5));
 }
+
+TEST_CASE("equality same unit 1", "[length]") {
+    using tndev::geo::kilometers;
+
+    REQUIRE((kilometers(1.5) == kilometers(1.5)) == true);
+}
+
+TEST_CASE("equality same unit 2", "[length]") {
+    using tndev::geo::kilometers;
+
+    REQUIRE((kilometers(1.5) == kilometers(1.4)) == false);
+}
+
+TEST_CASE("equality different unit 1", "[length]") {
+    using tndev::geo::kilometers;
+    using tndev::geo::meters;
+
+    REQUIRE((kilometers(1.5) == meters(1500)) == true);
+}
+
+TEST_CASE("unequality same unit 1", "[length]") {
+    using tndev::geo::kilometers;
+    using tndev::geo::meters;
+
+    REQUIRE((kilometers(1.5) != kilometers(1.4)) == true);
+}
+
+TEST_CASE("unequality same unit 2", "[length]") {
+    using tndev::geo::kilometers;
+    using tndev::geo::meters;
+
+    REQUIRE((kilometers(1.5) != kilometers(1.5)) == false);
+}
+
+TEST_CASE("equality different unit 2", "[length]") {
+    using tndev::geo::kilometers;
+    using tndev::geo::meters;
+
+    REQUIRE((kilometers(1.5) == meters(1000)) == false);
+}
+
+TEST_CASE("smaller then same unit 1", "[length]") {
+    using tndev::geo::kilometers;
+    using tndev::geo::meters;
+
+    REQUIRE((kilometers(1.4) < kilometers(1.5)) == true);
+}
+
+TEST_CASE("smaller then same unit 2", "[length]") {
+    using tndev::geo::kilometers;
+    using tndev::geo::meters;
+
+    REQUIRE((kilometers(1.5) < kilometers(1.4)) == false);
+}
+
+TEST_CASE("larger then same unit 1", "[length]") {
+    using tndev::geo::kilometers;
+    using tndev::geo::meters;
+
+    REQUIRE((kilometers(1.5) > kilometers(1.4)) == true);
+}
+
+TEST_CASE("larger then same unit 2", "[length]") {
+    using tndev::geo::kilometers;
+    using tndev::geo::meters;
+
+    REQUIRE((kilometers(1.4) > kilometers(1.5)) == false);
+}
+
+TEST_CASE("smaller or equal then same unit 1", "[length]") {
+    using tndev::geo::kilometers;
+    using tndev::geo::meters;
+
+    REQUIRE((kilometers(1.4) <= kilometers(1.5)) == true);
+}
+
+TEST_CASE("smaller or equal then same unit 2", "[length]") {
+    using tndev::geo::kilometers;
+    using tndev::geo::meters;
+
+    REQUIRE((kilometers(1.5) <= kilometers(1.4)) == false);
+}
+
+TEST_CASE("larger or equal then same unit 1", "[length]") {
+    using tndev::geo::kilometers;
+    using tndev::geo::meters;
+
+    REQUIRE((kilometers(1.5) >= kilometers(1.4)) == true);
+}
+
+TEST_CASE("larger or equal then same unit 2", "[length]") {
+    using tndev::geo::kilometers;
+    using tndev::geo::meters;
+
+    REQUIRE((kilometers(1.4) >= kilometers(1.5)) == false);
+}
