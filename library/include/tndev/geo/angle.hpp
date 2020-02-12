@@ -111,7 +111,7 @@ template <angle_unit T1, angle_unit T2>
 template <angle_unit T1, angle_unit T2>
 [[nodiscard]] constexpr auto operator!=(const angle<T1>& lhs,
                                         const angle<T2>& rhs) -> bool {
-    return lhs != rhs;
+    return !(lhs == rhs);
 }
 
 template <angle_unit T1, angle_unit T2>
