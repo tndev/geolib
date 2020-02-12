@@ -1,0 +1,33 @@
+#include <catch2/catch.hpp>
+
+#include <tndev/geo/length.hpp>
+
+TEST_CASE("convert meters to kilometers", "[length]") {
+    using tndev::geo::kilometers;
+    using tndev::geo::meters;
+    REQUIRE(kilometers(meters(1500.)).count() == Approx(1.5));
+}
+
+TEST_CASE("convert kilometers to meters", "[length]") {
+    using tndev::geo::kilometers;
+    using tndev::geo::meters;
+    REQUIRE(meters(kilometers(1.5)).count() == Approx(1500.));
+}
+
+TEST_CASE("multiply by scalar 1", "[length]") {
+    using tndev::geo::kilometers;
+    using tndev::geo::meters;
+    REQUIRE((meters(1500.) * 2.).count() == Approx(3000.));
+}
+
+TEST_CASE("multiply by scalar 2", "[length]") {
+    using tndev::geo::kilometers;
+    using tndev::geo::meters;
+    REQUIRE((2. * meters(1500.)).count() == Approx(3000.));
+}
+
+TEST_CASE("divide by scalar", "[length]") {
+    using tndev::geo::kilometers;
+    using tndev::geo::meters;
+    REQUIRE((meters(1500.) / 2.).count() == Approx(750.));
+}
