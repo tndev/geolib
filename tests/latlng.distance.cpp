@@ -3,7 +3,7 @@
 #include <tndev/geo/latlng.hpp>
 #include <tndev/geo/length.hpp>
 
-TEST_CASE("calculate length deg", "[vector]") {
+TEST_CASE("calculate length deg", "[latlng.distance]") {
     using tndev::geo::distance;
     using tndev::geo::latlng_deg;
     using tndev::geo::latlng_rad;
@@ -18,7 +18,7 @@ TEST_CASE("calculate length deg", "[vector]") {
     REQUIRE(distanceAB.count() == Approx(76732.7810481685));
 }
 
-TEST_CASE("calculate length rad", "[vector]") {
+TEST_CASE("calculate length rad", "[latlng.distance]") {
     using tndev::geo::distance;
     using tndev::geo::latlng_deg;
     using tndev::geo::latlng_rad;

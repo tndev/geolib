@@ -51,7 +51,7 @@ target_compile_options(project_warnings
 SET(SOURCES
   main.cpp
   angle.cpp
-  length.cpp
+  latlng.distance.cpp
   bearing.cpp
 )
 
