@@ -171,3 +171,19 @@ TEST_CASE("larger or equal then same unit 2", "[length]") {
 
     REQUIRE((kilometers(1.4) >= kilometers(1.5)) == false);
 }
+
+TEST_CASE("sum up two lengths", "[length]") {
+    using tndev::geo::kilometers;
+
+    auto result = kilometers(1.0) + kilometers(0.5);
+
+    REQUIRE(result.count() == Approx(1.5));
+}
+
+TEST_CASE("subtracting two lengths", "[length]") {
+    using tndev::geo::kilometers;
+
+    auto result = kilometers(1.0) - kilometers(0.5);
+
+    REQUIRE(result.count() == Approx(0.5));
+}
