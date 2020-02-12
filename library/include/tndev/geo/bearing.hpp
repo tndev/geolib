@@ -3,6 +3,7 @@
 #include <tndev/geo/angle.hpp>
 #include <tndev/geo/latlng.hpp>
 
+#include <algorithm>
 #include <cmath>
 
 namespace tndev::geo {
@@ -85,6 +86,19 @@ struct bearing {
   private:
     value_t value;
 };
+
+template <angle_unit T, angle_unit S>
+auto smallest_angle_between_bearings(const bearing<S>& a, const bearing<T>& b) {
+    const auto [minAngle, maxAngle] = std::minmax(a.compass(), b.compass());
+
+    angle<T> res = maxAngle - minAngle;
+
+    if (res.count() > bearing_trait<T>::kHalfAngle) {
+        res = minAngle + (angle<T>(bearing_trait<T>::kMaxAngle) - maxAngle);
+    }
+
+    return res;
+}
 
 using bearing_deg = bearing<angle_unit::kDeg>;
 using bearing_rad = bearing<angle_unit::kRad>;
