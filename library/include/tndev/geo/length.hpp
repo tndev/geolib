@@ -87,6 +87,22 @@ constexpr auto length_cast_int(const length<Rep2, Period2>& in) -> Rep2 {
     return in.count() * relFrom / relTo;
 }
 
+template <class Rep1, typename Rep2, typename Period1, typename Period2>
+[[nodiscard]] constexpr auto operator+(const length<Rep1, Period1>& lhs,
+                                       const length<Rep2, Period2>& rhs)
+    -> length<Rep1, Period1> {
+    using return_t = length<Rep1, Period1>;
+    return return_t(return_t(lhs).count() + return_t(rhs).count());
+}
+
+template <class Rep1, typename Rep2, typename Period1, typename Period2>
+[[nodiscard]] constexpr auto operator-(const length<Rep1, Period1>& lhs,
+                                       const length<Rep2, Period2>& rhs)
+    -> length<Rep1, Period1> {
+    using return_t = length<Rep1, Period1>;
+    return return_t(return_t(lhs).count() - return_t(rhs).count());
+}
+
 template <class Rep1, typename Rep2, typename Period>
 constexpr auto operator*(const length<Rep1, Period>& pt, const Rep2& val)
     -> length<Rep1, Period> {
