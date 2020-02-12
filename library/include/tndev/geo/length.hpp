@@ -105,6 +105,48 @@ constexpr auto operator/(const length<Rep1, Period>& pt, const Rep2& val)
     return length<Rep1, Period>{pt.count() / val};
 }
 
+template <class Rep1, typename Rep2, typename Period1, typename Period2>
+[[nodiscard]] constexpr auto operator==(const length<Rep1, Period1>& lhs,
+                                        const length<Rep2, Period2>& rhs)
+    -> bool {
+    return lhs.count() == length<Rep1, Period1>(rhs).count();
+}
+
+template <class Rep1, typename Rep2, typename Period1, typename Period2>
+[[nodiscard]] constexpr auto operator!=(const length<Rep1, Period1>& lhs,
+                                        const length<Rep2, Period2>& rhs)
+    -> bool {
+    return !(lhs == rhs);
+}
+
+template <class Rep1, typename Rep2, typename Period1, typename Period2>
+[[nodiscard]] constexpr auto operator<(const length<Rep1, Period1>& lhs,
+                                       const length<Rep2, Period2>& rhs)
+    -> bool {
+    return lhs.count() < length<Rep1, Period1>(rhs).count();
+}
+
+template <class Rep1, typename Rep2, typename Period1, typename Period2>
+[[nodiscard]] constexpr auto operator>(const length<Rep1, Period1>& lhs,
+                                       const length<Rep2, Period2>& rhs)
+    -> bool {
+    return rhs < lhs;
+}
+
+template <class Rep1, typename Rep2, typename Period1, typename Period2>
+[[nodiscard]] constexpr auto operator<=(const length<Rep1, Period1>& lhs,
+                                        const length<Rep2, Period2>& rhs)
+    -> bool {
+    return !(rhs < lhs);
+}
+
+template <class Rep1, typename Rep2, typename Period1, typename Period2>
+[[nodiscard]] constexpr auto operator>=(const length<Rep1, Period1>& lhs,
+                                        const length<Rep2, Period2>& rhs)
+    -> bool {
+    return !(rhs > lhs);
+}
+
 } // namespace tndev::geo
 
 namespace tndev::geo_literals {
