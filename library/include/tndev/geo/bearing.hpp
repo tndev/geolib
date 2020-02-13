@@ -89,7 +89,10 @@ struct bearing {
 
 template <angle_unit T, angle_unit S>
 auto smallest_angle_between_bearings(const bearing<S>& a, const bearing<T>& b) {
-    const auto [minAngle, maxAngle] = std::minmax(a.compass(), b.compass());
+    auto minAngle = angle<T>{};
+    auto maxAngle = angle<T>{};
+
+    std::tie(minAngle, maxAngle) = std::minmax(a.compass(), b.compass());
 
     angle<T> res = maxAngle - minAngle;
 
