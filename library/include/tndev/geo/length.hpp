@@ -3,7 +3,6 @@
 #include <tndev/geo/constants.hpp>
 
 #include <cmath>
-#include <iostream>
 #include <ratio>
 
 // https://stackoverflow.com/questions/20231258/minimum-distance-between-a-point-and-a-line-in-latitude-longitude
