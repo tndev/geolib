@@ -89,3 +89,23 @@ TEST_CASE("relative absolute bearing", "[bearing]") {
     REQUIRE(centerNorth.relative_abs().count() == Approx(3.3373923611));
     REQUIRE(northCenter.relative_abs().count() == Approx(176.6625817551));
 }
+
+TEST_CASE("smallest angle between two bearings", "[bearing]") {
+    using tndev::geo::bearing_deg;
+    using tndev::geo::latlng_deg;
+
+    auto center = latlng_deg(47.691626, 9.186317);
+    auto north = latlng_deg(47.692030, 9.186282);
+    // auto south = latlng_deg(47.691145, 9.186357);
+    // auto east = latlng_deg(47.691640, 9.186845);
+    // auto west = latlng_deg(47.691593, 9.185574);
+
+    auto centerNorth = bearing_deg(center, north);
+    auto northCenter = bearing_deg(north, center);
+
+    auto angleNC = smallest_angle_between_bearings(centerNorth, northCenter);
+    auto angleCN = smallest_angle_between_bearings(northCenter, centerNorth);
+
+    REQUIRE(angleNC.count() == Approx(180.));
+    REQUIRE(angleCN.count() == Approx(180.));
+}
