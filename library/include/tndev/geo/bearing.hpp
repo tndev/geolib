@@ -38,9 +38,8 @@ template <angle_unit Ta>
 }
 
 template <angle_unit R, angle_unit Ta, angle_unit Tb>
-[[nodiscard]] constexpr auto calculate_bearing(const latlng<Ta>& from,
-                                               const latlng<Tb>& to)
-    -> angle<R> {
+[[nodiscard]] auto calculate_bearing(const latlng<Ta>& from,
+                                     const latlng<Tb>& to) -> angle<R> {
     auto fromRad = latlng_rad(from);
     auto toRad = latlng_rad(to);
     auto diffLng = toRad.lng() - fromRad.lng();
@@ -62,7 +61,7 @@ struct bearing {
     constexpr bearing() = default;
 
     template <angle_unit Ta, angle_unit Tb>
-    constexpr bearing(const latlng<Ta>& from, const latlng<Tb>& to)
+    bearing(const latlng<Ta>& from, const latlng<Tb>& to)
         : value(calculate_bearing<T>(from, to)) {}
 
     constexpr auto compass() const -> value_t { return value; }
