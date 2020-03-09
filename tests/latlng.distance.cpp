@@ -1,8 +1,8 @@
 #include <catch2/catch.hpp>
 
+#include <tndev/geo/extent.hpp>
 #include <tndev/geo/latlng.distance.hpp>
 #include <tndev/geo/latlng.hpp>
-#include <tndev/geo/length.hpp>
 
 TEST_CASE("calculate length deg", "[latlng.distance]") {
     using tndev::geo::distance;

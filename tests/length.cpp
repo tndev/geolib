@@ -1,6 +1,6 @@
 #include <catch2/catch.hpp>
 
-#include <tndev/geo/length.hpp>
+#include <tndev/geo/extent.hpp>
 
 TEST_CASE("convert meters to kilometers", "[length]") {
     using tndev::geo::kilometers;

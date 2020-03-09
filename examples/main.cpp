@@ -9,8 +9,8 @@ auto main() -> int {
     using tndev::geo_literals::operator""_deg;
     using tndev::geo::degree;
     using tndev::geo::distance;
+    using tndev::geo::extent_cast;
     using tndev::geo::latlng_deg;
-    using tndev::geo::length_cast;
     using tndev::geo::meters;
 
     auto deg90 = tndev::geo::degree(90.);
