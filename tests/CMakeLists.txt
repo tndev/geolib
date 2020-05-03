@@ -54,6 +54,7 @@ SET(SOURCES
   latlng.distance.cpp
   bearing.cpp
   length.cpp
+  elevation.cpp
 )
 
 add_executable(${project_name}  ${SOURCES})
