@@ -55,6 +55,7 @@ SET(SOURCES
   bearing.cpp
   length.cpp
   elevation.cpp
+  projection.cpp
 )
 
 add_executable(${project_name}  ${SOURCES})
