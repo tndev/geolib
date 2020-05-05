@@ -17,6 +17,7 @@ SET(HEADERS
     include/tndev/geo/extent.hpp
     include/tndev/geo/point.hpp
     include/tndev/geo/tile.hpp
+    include/tndev/geo/projection/mercator.hpp
     include/tndev/geo/latlng.distance.hpp
 )
 
