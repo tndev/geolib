@@ -15,6 +15,7 @@ SET(HEADERS
     include/tndev/geo/bearing.hpp
     include/tndev/geo/length.hpp
     include/tndev/geo/extent.hpp
+    include/tndev/geo/point.hpp
     include/tndev/geo/latlng.distance.hpp
 )
 
