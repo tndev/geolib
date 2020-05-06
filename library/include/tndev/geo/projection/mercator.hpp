@@ -1,5 +1,6 @@
 #pragma once
 
+#include <tndev/geo/bounding_box.hpp>
 #include <tndev/geo/latlng.hpp>
 #include <tndev/geo/point.hpp>
 #include <tndev/geo/tile.hpp>
@@ -8,10 +9,17 @@
 
 namespace tndev::geo::projection {
 struct mercator {
-    mercator() = default;
+    using point_t = point<mercator>;
+    mercator() : m_bbox(point_t({0., 0.}), point_t({1., 1.})) {}
+
+    mercator(const bounding_box<point_t>& bbox) : m_bbox(bbox) {}
+
+    template <angle_unit T>
+    mercator(const bounding_box<latlng<T>>& bbox)
+        : m_bbox(point_t(bbox.topleft()), point_t(bbox.bottomleft())) {}
 
     mercator(const tile<mercator>& tile, unsigned int tileSize)
-        : m_tile(tile), m_tileSize(tileSize) {}
+        : m_bbox(get_bounding_box_point(tile)), m_tileSize(tileSize) {}
 
     mercator(unsigned int tileX,
              unsigned int tileY,
@@ -32,9 +40,6 @@ struct mercator {
             std::sin(latitude * kPI / 180.); // TODO use rad convert to RAD
         double y = 0.5 - std::log((1. + sinLatitude) / (1. - sinLatitude)) /
                              (4. * kPI);
-
-        /*const auto mapSize = static_cast<double>(DstSize) *
-                             static_cast<double>(std::pow(2, DstLevel));*/
 
         res.x = x;
         res.y = y;
@@ -57,15 +62,15 @@ struct mercator {
     auto projected(const point_value& relative) const -> point_value {
         auto projected = point_value{};
 
-        const auto mapSize = static_cast<double>(m_tileSize) *
-                             static_cast<double>(std::pow(2, m_tile.level()));
+        auto relativeTileWitdh =
+            m_bbox.bottomright().x() - m_bbox.topleft().x();
+        auto relativeTileHeight =
+            m_bbox.bottomright().y() - m_bbox.topleft().y();
 
-        projected.x = static_cast<double>(
-                          std::clamp(relative.x * mapSize, 0., mapSize - 1.)) -
-                      static_cast<double>(m_tile.x()) * m_tileSize;
-        projected.y = static_cast<double>(
-                          std::clamp(relative.y * mapSize, 0., mapSize - 1.)) -
-                      static_cast<double>(m_tile.y()) * m_tileSize;
+        projected.x = (relative.x - m_bbox.topleft().x()) / relativeTileWitdh *
+                      m_tileSize;
+        projected.y = (relative.y - m_bbox.topleft().y()) / relativeTileHeight *
+                      m_tileSize;
 
         return projected;
     }
@@ -73,22 +78,22 @@ struct mercator {
     auto relative(const point_value& projected) const -> point_value {
         auto relative = point_value{};
 
-        const auto mapSize = static_cast<double>(m_tileSize) *
-                             static_cast<double>(std::pow(2, m_tile.level()));
+        auto relativeTileWitdh =
+            m_bbox.bottomright().x() - m_bbox.topleft().x();
+        auto relativeTileHeight =
+            m_bbox.bottomright().y() - m_bbox.topleft().y();
 
-        relative.x =
-            (projected.x + static_cast<double>(m_tile.x()) * m_tileSize) /
-            mapSize;
-        relative.y =
-            (projected.y + static_cast<double>(m_tile.y()) * m_tileSize) /
-            mapSize;
+        relative.x = (projected.x / m_tileSize) * relativeTileWitdh +
+                     m_bbox.topleft().x();
+        relative.y = (projected.y / m_tileSize) * relativeTileHeight +
+                     m_bbox.topleft().y();
 
         return relative;
     }
 
   private:
     // defines the offset and the scaling of the projection
-    tile<mercator> m_tile;
+    bounding_box<point_t> m_bbox;
     unsigned int m_tileSize = 256;
 };
 } // namespace tndev::geo::projection
