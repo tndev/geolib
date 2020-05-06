@@ -10,14 +10,14 @@ namespace tndev::geo::projection {
 struct mercator {
     mercator() = default;
 
+    mercator(const tile<mercator>& tile, unsigned int tileSize)
+        : m_tile(tile), m_tileSize(tileSize) {}
+
     mercator(unsigned int tileX,
              unsigned int tileY,
              unsigned int level,
              unsigned int tileSize)
-        : m_tile(tileX, tileY, level), m_tileSize(tileSize) {}
-
-    mercator(const tile<mercator>& tile, unsigned int tileSize)
-        : m_tile(tile), m_tileSize(tileSize) {}
+        : mercator(tile<mercator>(tileX, tileY, level), tileSize) {}
 
     static auto to_relative(const latlng_rad& ll) -> point_value {
         auto res = point_value{};
