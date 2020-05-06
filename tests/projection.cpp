@@ -68,3 +68,42 @@ TEST_CASE("quadkey", "[projection]") {
     REQUIRE(tileOrg.y() == Approx(tile2.y()));
     REQUIRE(tileOrg.level() == Approx(tile2.level()));
 }
+
+TEST_CASE("back and forth projection", "[projection]") {
+    using tndev::geo::degree;
+    using tndev::geo::get_enclosing_tile;
+    using tndev::geo::latlng_deg;
+    using tndev::geo::point;
+    using tndev::geo::projection::mercator;
+
+    auto ll = latlng_deg(47.691603, 9.186170);
+    auto llTile = get_enclosing_tile<mercator>(ll, 18);
+
+    auto p1 = point<mercator>(ll);
+    auto m = mercator(llTile, 256);
+    auto projected = p1.projected(m);
+    auto p2 = point<mercator>(projected, m);
+    auto ll2 = p2.latlng();
+
+    REQUIRE(degree(ll.lat()).count() == Approx(degree(ll2.lat()).count()));
+    REQUIRE(degree(ll.lng()).count() == Approx(degree(ll2.lng()).count()));
+}
+
+TEST_CASE("get projected point", "[projection]") {
+
+    using tndev::geo::degree;
+    using tndev::geo::get_enclosing_tile;
+    using tndev::geo::latlng_deg;
+    using tndev::geo::point;
+    using tndev::geo::projection::mercator;
+
+    auto ll = latlng_deg(47.691603, 9.186170);
+    auto llTile = get_enclosing_tile<mercator>(ll, 18);
+
+    auto p1 = point<mercator>(ll);
+    auto m = mercator(llTile, 256);
+    auto projected = p1.projected(m);
+
+    REQUIRE(projected.x == Approx(42.2034));
+    REQUIRE(projected.y == Approx(165.687));
+}
