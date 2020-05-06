@@ -123,11 +123,11 @@ TEST_CASE("verify bbox projected", "[projection]") {
     auto tl = bbox.topleft();
     auto br = bbox.bottomright();
 
-    auto tl_projected = tl.projected(m);
-    auto br_projected = br.projected(m);
+    auto tlProjected = tl.projected(m);
+    auto brProjected = br.projected(m);
 
-    REQUIRE(tl_projected.x == Approx(0.0));
-    REQUIRE(tl_projected.y == Approx(0.0));
-    REQUIRE(br_projected.x == Approx(256.0));
-    REQUIRE(br_projected.y == Approx(256.0));
+    REQUIRE(tlProjected.x == Approx(0.0));
+    REQUIRE(tlProjected.y == Approx(0.0));
+    REQUIRE(brProjected.x == Approx(256.0));
+    REQUIRE(brProjected.y == Approx(256.0));
 }
