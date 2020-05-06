@@ -12,19 +12,22 @@ struct mercator {
     using point_t = point<mercator>;
     mercator() : m_bbox(point_t({0., 0.}), point_t({1., 1.})) {}
 
-    mercator(const bounding_box<point_t>& bbox) : m_bbox(bbox) {}
+    mercator(const bounding_box<point_t>& bbox, unsigned int tileSize = 256.)
+        : m_bbox(bbox), m_tileSize(tileSize) {}
 
     template <angle_unit T>
-    mercator(const bounding_box<latlng<T>>& bbox)
-        : m_bbox(point_t(bbox.topleft()), point_t(bbox.bottomleft())) {}
+    mercator(const bounding_box<latlng<T>>& bbox, unsigned int tileSize = 256.)
+        : mercator(bounding_box<point_t>(point_t(bbox.topleft()),
+                                         point_t(bbox.bottomright())),
+                   tileSize) {}
 
-    mercator(const tile<mercator>& tile, unsigned int tileSize)
-        : m_bbox(get_bounding_box_point(tile)), m_tileSize(tileSize) {}
+    mercator(const tile<mercator>& tile, unsigned int tileSize = 256.)
+        : mercator(get_bounding_box_point(tile), tileSize) {}
 
     mercator(unsigned int tileX,
              unsigned int tileY,
              unsigned int level,
-             unsigned int tileSize)
+             unsigned int tileSize = 256.)
         : mercator(tile<mercator>(tileX, tileY, level), tileSize) {}
 
     static auto to_relative(const latlng_rad& ll) -> point_value {
