@@ -18,6 +18,7 @@ SET(HEADERS
     include/tndev/geo/point.hpp
     include/tndev/geo/quadkey.hpp
     include/tndev/geo/tile.hpp
+    include/tndev/geo/bounding_box.hpp
     include/tndev/geo/projection/mercator.hpp
     include/tndev/geo/latlng.distance.hpp
 )
