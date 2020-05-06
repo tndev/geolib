@@ -107,3 +107,27 @@ TEST_CASE("get projected point", "[projection]") {
     REQUIRE(projected.x == Approx(42.2034));
     REQUIRE(projected.y == Approx(165.687));
 }
+
+TEST_CASE("verify bbox projected", "[projection]") {
+    using tndev::geo::degree;
+    using tndev::geo::get_enclosing_tile;
+    using tndev::geo::latlng_deg;
+    using tndev::geo::point;
+    using tndev::geo::projection::mercator;
+
+    auto ll = latlng_deg(47.691603, 9.186170);
+    auto llTile = get_enclosing_tile<mercator>(ll, 18);
+
+    auto bbox = get_bounding_box_point(llTile);
+    auto m = mercator(bbox, 256);
+    auto tl = bbox.topleft();
+    auto br = bbox.bottomright();
+
+    auto tl_projected = tl.projected(m);
+    auto br_projected = br.projected(m);
+
+    REQUIRE(tl_projected.x == Approx(0.0));
+    REQUIRE(tl_projected.y == Approx(0.0));
+    REQUIRE(br_projected.x == Approx(256.0));
+    REQUIRE(br_projected.y == Approx(256.0));
+}
