@@ -3,6 +3,9 @@
 #include <tndev/geo/latlng.hpp>
 #include <tndev/geo/point.hpp>
 
+#include <cmath>
+#include <tuple>
+
 namespace tndev::geo {
 template <typename Projection>
 struct tile {
@@ -44,6 +47,29 @@ auto get_enclosing_tile(const point<Projection>& p, unsigned int level) {
 template <typename Projection, angle_unit T>
 auto get_enclosing_tile(const latlng<T>& ll, unsigned int level) {
     return get_enclosing_tile(point<Projection>(ll), level);
+}
+
+template <typename Projection>
+auto get_bounding_box_point(const tile<Projection>& tile) {
+    using point_t = point<Projection>;
+    auto tiles = static_cast<double>(std::pow(2, tile.level()));
+
+    auto x1 = tile.x() / tiles;
+    auto y1 = tile.y() / tiles;
+    auto x2 = (tile.x() + 1.) / tiles;
+    auto y2 = (tile.y() + 1.) / tiles;
+
+    return std::tuple<point_t, point_t>(point_t({x1, y1}), point_t({x2, y2}));
+}
+
+template <typename Projection>
+auto get_bounding_box_latlng(const tile<Projection>& tile) {
+    using latlng_t = latlng_rad;
+
+    auto bboxPoint = get_bounding_box_point(tile);
+
+    return std::tuple<latlng_t, latlng_t>(std::get<0>(bboxPoint).latlng(),
+                                          std::get<1>(bboxPoint).latlng());
 }
 
 } // namespace tndev::geo
