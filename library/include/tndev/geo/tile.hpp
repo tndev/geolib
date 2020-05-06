@@ -1,10 +1,10 @@
 #pragma once
 
+#include <tndev/geo/bounding_box.hpp>
 #include <tndev/geo/latlng.hpp>
 #include <tndev/geo/point.hpp>
 
 #include <cmath>
-#include <tuple>
 
 namespace tndev::geo {
 template <typename Projection>
@@ -59,7 +59,7 @@ auto get_bounding_box_point(const tile<Projection>& tile) {
     auto x2 = (tile.x() + 1.) / tiles;
     auto y2 = (tile.y() + 1.) / tiles;
 
-    return std::tuple<point_t, point_t>(point_t({x1, y1}), point_t({x2, y2}));
+    return bounding_box<point_t>(point_t({x1, y1}), point_t({x2, y2}));
 }
 
 template <typename Projection>
@@ -68,8 +68,8 @@ auto get_bounding_box_latlng(const tile<Projection>& tile) {
 
     auto bboxPoint = get_bounding_box_point(tile);
 
-    return std::tuple<latlng_t, latlng_t>(std::get<0>(bboxPoint).latlng(),
-                                          std::get<1>(bboxPoint).latlng());
+    return bounding_box<latlng_t>(bboxPoint.topleft().latlng(),
+                                  bboxPoint.bottomright().latlng());
 }
 
 } // namespace tndev::geo
