@@ -28,6 +28,8 @@ struct point {
     point(const point_value& projected, const Projection& projection)
         : m_value(projection.relative(projected)){};
 
+    explicit point(const point_value& relative) : m_value(relative){};
+
     // relavtive coordinates in projection space
     [[nodiscard]] constexpr auto x() const { return m_value.x; }
     [[nodiscard]] constexpr auto y() const { return m_value.y; }
