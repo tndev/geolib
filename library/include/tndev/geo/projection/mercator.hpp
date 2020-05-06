@@ -6,6 +6,7 @@
 #include <tndev/geo/tile.hpp>
 
 #include <cmath>
+#include <algorithm>
 
 namespace tndev::geo::projection {
 struct mercator {
