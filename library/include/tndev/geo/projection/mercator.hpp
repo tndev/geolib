@@ -5,19 +5,21 @@
 #include <tndev/geo/point.hpp>
 #include <tndev/geo/tile.hpp>
 
-#include <cmath>
 #include <algorithm>
+#include <cmath>
 
 namespace tndev::geo::projection {
 struct mercator {
     using point_t = point<mercator>;
     mercator() : m_bbox(point_t({0., 0.}), point_t({1., 1.})) {}
 
-    explicit mercator(const bounding_box<point_t>& bbox, unsigned int tileSize = 256.)
+    explicit mercator(const bounding_box<point_t>& bbox,
+                      unsigned int tileSize = 256.)
         : m_bbox(bbox), m_tileSize(tileSize) {}
 
     template <angle_unit T>
-    explicit mercator(const bounding_box<latlng<T>>& bbox, unsigned int tileSize = 256.)
+    explicit mercator(const bounding_box<latlng<T>>& bbox,
+                      unsigned int tileSize = 256.)
         : mercator(bounding_box<point_t>(point_t(bbox.topleft()),
                                          point_t(bbox.bottomright())),
                    tileSize) {}
@@ -63,7 +65,8 @@ struct mercator {
         return res;
     }
 
-    auto projected(const point_value& relative) const -> point_value {
+    [[nodiscard]] auto projected(const point_value& relative) const
+        -> point_value {
         auto projected = point_value{};
 
         auto relativeTileWitdh =
@@ -79,7 +82,8 @@ struct mercator {
         return projected;
     }
 
-    auto relative(const point_value& projected) const -> point_value {
+    [[nodiscard]] auto relative(const point_value& projected) const
+        -> point_value {
         auto relative = point_value{};
 
         auto relativeTileWitdh =
