@@ -1,6 +1,7 @@
 #pragma once
 #include <tndev/geo/tile.hpp>
 
+#include <stdexcept>
 #include <string>
 
 namespace tndev::geo {
