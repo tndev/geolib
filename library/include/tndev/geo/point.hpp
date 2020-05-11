@@ -23,7 +23,7 @@ struct point {
 
     template <angle_unit T>
     explicit point(const latlng<T>& ll)
-        : m_value(Projection::to_relative(ll)){};
+        : m_value(Projection::to_relative(ll)) {}
 
     point(const point_value& projected, const Projection& projection)
         : m_value(projection.relative(projected)){};
