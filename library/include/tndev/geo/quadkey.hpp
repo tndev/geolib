@@ -13,7 +13,7 @@ inline auto tile_to_quadkey(tile<Projection>& tile) -> std::string {
     for (size_t j = 0; j < tile.level(); j++) {
         char digit = '0';
         unsigned int i = tile.level() - static_cast<unsigned int>(j);
-        unsigned int mask = 1 << (i - 1);
+        unsigned int mask = 1u << (i - 1);
         if ((tile.x() & mask) != 0) {
             digit++;
         }
@@ -34,7 +34,7 @@ inline auto quadkey_to_tile(const std::string& quadkey) -> tile<Projection> {
     unsigned int levelOfDetail = static_cast<unsigned int>(quadkey.size());
     for (size_t j = 0; j < levelOfDetail; j++) {
         unsigned int i = levelOfDetail - static_cast<unsigned int>(j);
-        unsigned int mask = 1 << (i - 1);
+        unsigned int mask = 1u << (i - 1);
         switch (quadkey[levelOfDetail - i]) {
         case '0':
             break;
